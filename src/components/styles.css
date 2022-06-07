@@ -1,0 +1,146 @@
+body {
+    /* background-color: rgb(236, 251, 252); */
+    background: linear-gradient(to bottom left, #ff9966 0%, #ffff99 100%);
+}
+
+div {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+}
+
+h1 {
+    font-family: 'Sacramento', cursive;
+    font-weight: bold;
+}
+
+.head {
+    background-color: black;
+    color: white;
+
+    position: sticky;
+    top: 0;
+}
+
+.head h1 {
+    margin: 0 2% 0;
+    padding: 1% 0;
+    font-size: 250%;
+}
+
+.head h1 a {
+    /* font-family: 'Montserrat', sans-serif; */
+    text-decoration: none;
+    color: white;
+}
+
+.head h1 a:hover {
+    text-decoration: underline;
+    font-size: 95%;
+}
+
+.profile-img {
+    /* max-width: 50%;
+    max-height: 50%; */
+
+    max-width: 150px;
+    max-height: 150px;
+
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.main-content {
+    width: 60%;
+    margin: 9% auto;
+
+    padding: 3px;
+    border: 2px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left {
+    width: 40%;
+    height: 380px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: 3px dashed black;
+}
+
+.right {
+    /* border: 2px solid red; */
+    width: 60%;
+    height: 380px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.right-content {
+    /* border: 2px solid gray; */
+    width: 80%;
+}
+
+.right-links {
+    /* border: 2px solid green; */
+    width: 10%;
+}
+
+.right-links img {
+    width: 100%;
+    margin-bottom: 20%;
+}
+
+.icon:hover {
+    width: 125%;
+}
+
+@media only screen and (max-width: 688px) {
+    .main-content {
+        display: block;
+        height: auto;
+    }
+    .profile-img {
+        width: 100%;
+    }
+    .left {
+        width: 100%;
+        height: 5%;
+        margin-top: 5%;
+        padding-bottom: 5%;
+        border: none;
+        border-bottom: 2px dashed black;
+
+        display: flex;
+        justify-content: center;
+    }
+    .right {
+        display: block;
+        width: 100%;
+    }
+    .right-content {
+        text-align: center;
+        width: 100%;
+        margin: 12% 0;
+    }
+    .right-links {
+        width: 80%;
+        margin: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .right-links img {
+        width: 90%;
+    }
+    .icon:hover {
+        width: 110%;
+    }
+}
