@@ -23,7 +23,7 @@ const home = () => {
           </div>
           <div className="right">
             <div className="right-content">
-              <h1>Purshottam Kumar</h1>
+              <h1>Purshottam Kumar!</h1>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet laborum cupiditate optio dolorem architecto hic illo cum, soluta molestiae vero tenetur? Minus reiciendis, assumenda officiis exercitationem explicabo nihil! Id, sit.</p>
             </div>
             <div className="right-links">
