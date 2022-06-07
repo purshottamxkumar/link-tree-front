@@ -75,7 +75,7 @@ h1 {
 .right {
     /* border: 2px solid red; */
     width: 60%;
-    height: 380px;
+    height: 370px;
 
     display: flex;
     justify-content: space-evenly;
@@ -131,7 +131,7 @@ h1 {
         margin: 12% 0;
     }
     .right-links {
-        width: 80%;
+        width: 85%;
         margin: auto;
 
         display: flex;
