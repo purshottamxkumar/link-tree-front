@@ -1,0 +1,8 @@
+.ticket-images img{
+    width: 20px;
+}
+
+.ticket-text {
+    margin-left: 2%;
+    /* border: 2px solid red; */
+}

@@ -42,16 +42,23 @@ h1 {
     /* max-width: 50%;
     max-height: 50%; */
 
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 155px;
+    max-height: 155px;
 
     border: 2px solid black;
     border-radius: 50%;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-img:hover {
+    max-width: 160px;
+    max-height: 160px;
 }
 
 .main-content {
     width: 60%;
-    margin: 9% auto;
+    margin: 5% auto;
 
     padding: 3px;
     border: 2px solid black;
@@ -59,40 +66,67 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .left {
     width: 40%;
-    height: 380px;
+    /* height: 370px; */
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    border-right: 3px dashed black;
 }
 
-.right {
-    /* border: 2px solid red; */
+.middle {
     width: 60%;
-    height: 370px;
+    /* height: 370px; */
 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
+    border-left: 3px dashed black;
 }
 
-.right-content {
+.middle-content {
     /* border: 2px solid gray; */
     width: 80%;
+    text-align: center;
 }
 
-.right-links {
+.middle-content-without-tickets {
+    margin: 2% 0;
+}
+
+.tickets {
+    display: flex;
+    
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+
+    /* background: #F4A460; */
+    background: #fcbb83;
+    color: black;
+    text-align: left;
+
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.tickets:hover {
+    /* background: #FF7F50; */
+    background: #fda85d;
+}
+
+.middle-links {
     /* border: 2px solid green; */
     width: 10%;
 }
 
-.right-links img {
+.middle-links img {
     width: 100%;
     margin-bottom: 20%;
 }
@@ -121,16 +155,17 @@ h1 {
         display: flex;
         justify-content: center;
     }
-    .right {
+    .middle {
         display: block;
         width: 100%;
+        border: none;
     }
-    .right-content {
+    .middle-content {
         text-align: center;
         width: 100%;
         margin: 12% 0;
     }
-    .right-links {
+    .middle-links {
         width: 85%;
         margin: auto;
 
@@ -138,7 +173,7 @@ h1 {
         justify-content: center;
         align-items: center;
     }
-    .right-links img {
+    .middle-links img {
         width: 90%;
     }
     .icon:hover {
