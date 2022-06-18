@@ -1,8 +1,29 @@
+a {
+    display: block;
+    width: 100%;
+
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    font-size: 101%;
+    cursor: pointer;
+    color: black;
+
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.ticket-images {
+    display: inline-block;
+}
+
 .ticket-images img{
     width: 20px;
 }
 
 .ticket-text {
+    display: inline-block;
     margin-left: 2%;
     /* border: 2px solid red; */
 }
