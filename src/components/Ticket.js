@@ -4,12 +4,14 @@ import "./Ticket.css";
 const home = (props) => {
   return (
       <>
-      <div className="ticket-images">
-        <img src= {props.src} alt="facebook-img" />
-      </div>
-      <div className="ticket-text">
-        {props.text}
-      </div>
+      <a href={props.href} target="_blank" rel="noopener noreferrer">
+        <div className="ticket-images">
+          <img src= {props.src} alt={props.alt} />
+        </div>
+        <div className="ticket-text">
+          {props.text}
+        </div>
+      </a>
       </>
   )
 }
