@@ -37,6 +37,19 @@
     min-width: 50% !important;
   }
 
+  .user-social-links{
+    display: flex;
+    margin-top: 5px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+  }
+
+
+
+
+
   @media (min-width: 1200px) {
    
   }

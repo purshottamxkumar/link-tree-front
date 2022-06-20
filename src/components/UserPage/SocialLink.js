@@ -1,13 +1,10 @@
 import React from "react";
-
+import InstagramIcon from "@mui/icons-material/Instagram";
+import "./SocialLink.css";
 const SocialLink = (props) => {
   return (
     <>
-      <div className="social-link">
-        <a href={props.link} target="_blank" rel="noopener noreferrer">
-          <img src={props.img} alt={props.alt} className="icon" />
-        </a>
-      </div>
+      <InstagramIcon className="Instagram" />
     </>
   );
 };
