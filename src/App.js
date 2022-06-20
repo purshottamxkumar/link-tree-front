@@ -1,10 +1,9 @@
-import './App.css';
-import Home from "./components/Home.js";
-
+import "./App.css";
+import UserPage from "./components/UserPage/UserPage";
 function App() {
   return (
     <>
-    <Home/>
+      <UserPage />
     </>
   );
 }
