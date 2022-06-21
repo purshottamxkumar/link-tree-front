@@ -1,9 +1,9 @@
 import "./App.css";
-import UserPage from "./components/UserPage/UserPage";
+import Routes from "./Routes";
 function App() {
   return (
     <>
-      <UserPage />
+      <Routes />
     </>
   );
 }

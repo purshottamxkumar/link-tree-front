@@ -1,0 +1,75 @@
+.input-field{
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0px;
+    box-shadow: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    box-sizing: border-box;
+    appearance: none;
+    border: 0px;
+    color: rgb(61, 68, 75);
+    width: 100%;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.link-wrapper{
+    width: 100%;
+    height: 8rem;
+    background-color: azure;
+}
+.input-field:focus{
+    outline: none;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+}
+
+.link-form{
+    width: 100%;
+    display: flex;
+}
+.virtual-display-link{
+    display: none;
+}
+
+.text-edit{
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0px;
+    box-shadow: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    box-sizing: border-box;
+    appearance: none;
+    border: 0px;
+    color: rgb(61, 68, 75);
+    width: 100%;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+}
+.input-wrapper{
+    display: flex;
+}
+.real-input-link,.real-input-title{
+    width: 96%;
+}
+
+.virtual-display-title{
+    display: none;
+}

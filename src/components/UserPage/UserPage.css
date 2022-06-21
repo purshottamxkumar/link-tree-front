@@ -1,28 +1,25 @@
 .user-wrapper {
-    background-image: url("https://www.pixel4k.com/wp-content/uploads/2021/11/doctor-strange-dareveil-and-spidermans-in-spider-man-no-way-home-4k_1637425809-2048x1152.jpg"); /* The image used for background*/
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-position: center; /* Center the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background-image: url("https://www.pixel4k.com/wp-content/uploads/2021/11/doctor-strange-dareveil-and-spidermans-in-spider-man-no-way-home-4k_1637425809-2048x1152.jpg");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover; 
     font-family: "Syne", sans-serif;
     position: absolute;
     width: 100vw;
     min-height: 100vh;
   }
 
-  .container {
+  .container-u {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
     margin-top: 3%;
-    margin-left: auto;
     height: 100%;
   }
 
   .image-container {
     text-align: center;
     width: 50%;
-    margin-left: 25%;
+    margin-left: 25%; 
+    font-weight: 600;
   }
 
   .links-container {
@@ -34,7 +31,7 @@
   }
 
   .link {
-    min-width: 50% !important;
+    min-width: 100%;
   }
 
   .user-social-links{
@@ -62,10 +59,13 @@
       width: 100%;
     }
   }
-  @media (min-width: 576px) {
-    
+  @media (max-width: 480px) {
+    .image-container{
+      width: 90%;
+      margin-left: 5%;
+    }
   }
-
+  
   .w3-yellow,
   .w3-hover-purple:hover,
   .w3-text-black {
