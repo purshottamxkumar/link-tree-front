@@ -1,6 +1,6 @@
 import React from "react";
 import Linkcard from "./Linkcard";
-
+import "./LinkPage.css";
 const LinkPage = () => {
   return (
     <div className="Link-content">

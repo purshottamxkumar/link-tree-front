@@ -21,25 +21,25 @@
 }
 .link-wrapper{
     width: 100%;
-    height: 8rem;
+    height: auto;
     background-color: azure;
 }
-.input-field:focus{
+
+.input-tag:focus{
     outline: none;
 }
-.input-field{
-    display: flex;
-    flex-direction: column;
-}
 
+.link-input,.label-input{
+    width: 95%;
+}
+.label-input:focus,.link-input:focus{
+    outline: none;
+}
 .link-form{
     width: 100%;
+    height: 50px;
     display: flex;
 }
-.virtual-display-link{
-    display: none;
-}
-
 .text-edit{
     background-color: transparent;
     background-image: none;
@@ -70,6 +70,37 @@
     width: 96%;
 }
 
-.virtual-display-title{
+.link-bottom{
+    height: 40px;
+    display: flex;
+    position: relative;
+}
+.others-field{
+    width: auto;
+}
+
+.delete-button{
+    color: rgba(152, 1, 1, 0.655);
+    right: 40px;
+    position: absolute;
+}
+
+.delete-button:hover{
+   color: red;
+   cursor: pointer;
+} 
+
+.link-active,.label-active{
+    display: block;
+}
+
+.link-disabled,.label-disabled{
+  display: none;
+} 
+.link-input-active,.label-input-active{
+    display: block;
+}
+
+.link-input-disabled,.label-input-disabled{
     display: none;
 }

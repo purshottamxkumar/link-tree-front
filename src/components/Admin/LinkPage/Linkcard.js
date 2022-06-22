@@ -1,11 +1,15 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import Switch from "@mui/material/Switch";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useFormik } from "formik";
 import "./LinkCard.css";
-const IOSSwitch = styled((props: SwitchProps) => (
+import { useState, useEffect, useRef } from "react";
+
+/*switch material ui inbuild handler */
+const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
   width: 42,
@@ -55,39 +59,119 @@ const IOSSwitch = styled((props: SwitchProps) => (
     }),
   },
 }));
+
+/* Error handling of form */
+const validate = (values) => {
+  const errors = {};
+  if (!values.label) {
+    errors.label = "Required";
+  } else if (values.label.length > 20) {
+    errors.firstName = "Must be 20 characters or less";
+  }
+
+  if (!values.link) {
+    errors.link = "Required";
+  }
+
+  return errors;
+};
+
 const Linkcard = () => {
+  const [labelActive, setLabelActive] = useState(false);
+  const [linkActive, setLinkActive] = useState(false);
+  const labelRef = useRef(null);
+  const linkRef = useRef(null);
+  useEffect(() => {
+    if (linkActive) linkRef.current.focus();
+    if (labelActive) labelRef.current.focus();
+  }, [linkActive, labelActive]);
+  const formik = useFormik({
+    initialValues: {
+      label: "",
+      link: "",
+    },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <div className="link-wrapper">
-      <form action="submit" className="link-form">
+      <form
+        action="submit"
+        className="link-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className="input-field">
           <div className="input-wrapper">
-            <div className="real-input-title">
-              <input
-                type="text"
-                placeholder="Enter Title"
-                className="input-field"
-              />
-            </div>
-            <div className="virtual-display-title">
-              <button className="text-edit"></button>
-              <div className="icon-edit">
-                <EditIcon />
-              </div>
+            <input
+              type="text"
+              name="label"
+              placeholder="Enter Title"
+              className={`label-input label-input${
+                labelActive ? "-active" : "-disabled"
+              }`}
+              ref={labelRef}
+              value={formik.values.label}
+              onChange={formik.handleChange}
+              onBlur={() => setLabelActive(false)}
+            />
+            <button
+              className={`label-input label${
+                labelActive ? "-disabled" : "-active"
+              }`}
+              onClick={() => {
+                setLabelActive(true);
+              }}
+            >
+              {formik.values.label}
+            </button>
+            <div
+              className={`icon-edit label${
+                labelActive ? "-disabled" : "-active"
+              }`}
+            >
+              <EditIcon onClick={() => setLabelActive(true)} />
             </div>
           </div>
           <div className="input-wrapper">
-            <div className="real-input-link">
-              <input
-                type="text"
-                placeholder="Enter Title"
-                className="input-field"
+            <input
+              type="text"
+              placeholder="Enter Link"
+              name="link"
+              ref={linkRef}
+              className={`link-input link-input${
+                linkActive ? "-active" : "-disabled"
+              }`}
+              onChange={formik.handleChange}
+              value={formik.values.link}
+              onBlur={() => {
+                setLinkActive(false);
+              }}
+            />
+            <button
+              className={`link-input link${
+                linkActive ? "-disabled" : "-active"
+              }`}
+              onClick={() => {
+                setLinkActive(true);
+              }}
+            >
+              {formik.values.link}
+            </button>
+            <div
+              className={`icon-edit link${
+                linkActive ? "-disabled" : "-active"
+              }`}
+            >
+              <EditIcon
+                onClick={() => {
+                  setLinkActive(true);
+                }}
               />
-            </div>
-            <div className="virtual-display-link">
-              <button className="text-edit"></button>
-              <div className="icon-edit">
-                <EditIcon />
-              </div>
             </div>
           </div>
         </div>
@@ -98,9 +182,9 @@ const Linkcard = () => {
         </div>
       </form>
       <div className="link-bottom">
-        <div className="others-filed"></div>
+        <div className="others-field"></div>
         <div className="delete-button">
-          <DeleteIcon />
+          <DeleteIcon onClick={() => formik.handleSubmit()} />
         </div>
       </div>
     </div>

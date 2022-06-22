@@ -1,0 +1,16 @@
+.Link-content{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.link-top-nav{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.link-body{
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
