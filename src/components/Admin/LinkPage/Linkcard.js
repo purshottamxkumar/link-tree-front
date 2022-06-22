@@ -120,20 +120,16 @@ const Linkcard = () => {
               onBlur={() => setLabelActive(false)}
             />
             <button
-              className={`label-input label${
+              className={`label${
                 labelActive ? "-disabled" : "-active"
-              }`}
+              } button-start`}
               onClick={() => {
                 setLabelActive(true);
               }}
             >
               {formik.values.label}
             </button>
-            <div
-              className={`icon-edit label${
-                labelActive ? "-disabled" : "-active"
-              }`}
-            >
+            <div className={`label${labelActive ? "-disabled" : "-active"}`}>
               <EditIcon onClick={() => setLabelActive(true)} />
             </div>
           </div>
@@ -153,9 +149,9 @@ const Linkcard = () => {
               }}
             />
             <button
-              className={`link-input link${
+              className={`link${
                 linkActive ? "-disabled" : "-active"
-              }`}
+              } button-start`}
               onClick={() => {
                 setLinkActive(true);
               }}

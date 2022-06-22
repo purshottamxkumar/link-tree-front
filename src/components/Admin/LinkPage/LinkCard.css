@@ -1,4 +1,19 @@
+.link-wrapper{
+    width: 100%;
+}
 .input-field{
+  height: 80%;
+  height: 100%;
+  width: 100%;
+}
+
+
+.input-tag:focus{
+    outline: none;
+}
+
+.link-input,.label-input{
+    width: 95%;
     background-color: transparent;
     background-image: none;
     border-radius: 0px;
@@ -12,25 +27,11 @@
     appearance: none;
     border: 0px;
     color: rgb(61, 68, 75);
-    width: 100%;
     height: 20px;
     margin: 0px;
     padding: 0px;
     font-size: 14px;
     font-weight: 700;
-}
-.link-wrapper{
-    width: 100%;
-    height: auto;
-    background-color: azure;
-}
-
-.input-tag:focus{
-    outline: none;
-}
-
-.link-input,.label-input{
-    width: 95%;
 }
 .label-input:focus,.link-input:focus{
     outline: none;
@@ -40,29 +41,7 @@
     height: 50px;
     display: flex;
 }
-.text-edit{
-    background-color: transparent;
-    background-image: none;
-    border-radius: 0px;
-    box-shadow: none;
-    font-style: inherit;
-    font-variant: inherit;
-    font-stretch: inherit;
-    line-height: inherit;
-    font-family: inherit;
-    box-sizing: border-box;
-    appearance: none;
-    border: 0px;
-    color: rgb(61, 68, 75);
-    width: 100%;
-    height: 20px;
-    margin: 0px;
-    padding: 0px;
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    outline: none;
-}
+
 .input-wrapper{
     display: flex;
 }
@@ -78,7 +57,29 @@
 .others-field{
     width: auto;
 }
-
+.button-start{
+    justify-content: start;
+    align-items: center;
+    width: 95%;
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0px;
+    box-shadow: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    box-sizing: border-box;
+    appearance: none;
+    border: 0px;
+    color: rgb(61, 68, 75);
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 700;
+}
 .delete-button{
     color: rgba(152, 1, 1, 0.655);
     right: 40px;
@@ -91,7 +92,7 @@
 } 
 
 .link-active,.label-active{
-    display: block;
+    display: flex;
 }
 
 .link-disabled,.label-disabled{
