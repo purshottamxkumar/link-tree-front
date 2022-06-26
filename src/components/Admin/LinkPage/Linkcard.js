@@ -1,66 +1,12 @@
-import React from "react";
-import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useFormik } from "formik";
 import "./LinkCard.css";
 import { useState, useEffect, useRef } from "react";
-
+import EditButton from "./EditButton";
+import { IOSSwitch } from "./iosSwitchconfig";
 /*switch material ui inbuild handler */
-const IOSSwitch = styled((props) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
-  width: 42,
-  height: 26,
-  padding: 0,
-  "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 2,
-    transitionDuration: "300ms",
-    "&.Mui-checked": {
-      transform: "translateX(16px)",
-      color: "#fff",
-      "& + .MuiSwitch-track": {
-        backgroundColor: theme.palette.mode === "dark" ? "#2ECA45" : "#65C466",
-        opacity: 1,
-        border: 0,
-      },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.5,
-      },
-    },
-    "&.Mui-focusVisible .MuiSwitch-thumb": {
-      color: "#33cf4d",
-      border: "6px solid #fff",
-    },
-    "&.Mui-disabled .MuiSwitch-thumb": {
-      color:
-        theme.palette.mode === "light"
-          ? theme.palette.grey[100]
-          : theme.palette.grey[600],
-    },
-    "&.Mui-disabled + .MuiSwitch-track": {
-      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
-    },
-  },
-  "& .MuiSwitch-thumb": {
-    boxSizing: "border-box",
-    width: 22,
-    height: 22,
-  },
-  "& .MuiSwitch-track": {
-    borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
-    opacity: 1,
-    transition: theme.transitions.create(["background-color"], {
-      duration: 500,
-    }),
-  },
-}));
 
-/* Error handling of form */
 const validate = (values) => {
   const errors = {};
   if (!values.label) {
@@ -119,25 +65,21 @@ const Linkcard = () => {
               onChange={formik.handleChange}
               onBlur={() => setLabelActive(false)}
             />
-            <button
-              className={`label${
-                labelActive ? "-disabled" : "-active"
-              } button-start`}
-              onClick={() => {
-                setLabelActive(true);
-              }}
-            >
-              {formik.values.label}
-            </button>
-            <div className={`label${labelActive ? "-disabled" : "-active"}`}>
-              <EditIcon onClick={() => setLabelActive(true)} />
-            </div>
+            <EditButton
+              type="label"
+              style={{ fontSize: "15px", fontWeight: "600", cursor: "pointer" }}
+              Active={labelActive}
+              value={formik.values.label}
+              setActive={setLabelActive}
+              initial="Title"
+            />
           </div>
           <div className="input-wrapper">
             <input
               type="text"
               placeholder="Enter Link"
               name="link"
+              style={{ fontSize: "40" }}
               ref={linkRef}
               className={`link-input link-input${
                 linkActive ? "-active" : "-disabled"
@@ -148,33 +90,18 @@ const Linkcard = () => {
                 setLinkActive(false);
               }}
             />
-            <button
-              className={`link${
-                linkActive ? "-disabled" : "-active"
-              } button-start`}
-              onClick={() => {
-                setLinkActive(true);
-              }}
-            >
-              {formik.values.link}
-            </button>
-            <div
-              className={`icon-edit link${
-                linkActive ? "-disabled" : "-active"
-              }`}
-            >
-              <EditIcon
-                onClick={() => {
-                  setLinkActive(true);
-                }}
-              />
-            </div>
+            <EditButton
+              type="link"
+              style={{ fontSize: "13px", fontWeight: "600", cursor: "pointer" }}
+              Active={linkActive}
+              value={formik.values.link}
+              initial="Url"
+              setActive={setLinkActive}
+            />
           </div>
         </div>
         <div className="switch">
-          <FormControlLabel
-            control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-          />
+          <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} />} />
         </div>
       </form>
       <div className="link-bottom">
