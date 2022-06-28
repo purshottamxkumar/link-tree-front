@@ -12,7 +12,7 @@ const EditButton = (props) => {
         }}
         style={style}
       >
-        {value.length ? value : initial}
+        {value ? value : initial}
       </button>
       <div className={`icon-edit ${type}${Active ? "-disabled" : "-active"}`}>
         <EditIcon

@@ -5,6 +5,7 @@ import "./LinkCard.css";
 import { useState, useEffect, useRef } from "react";
 import EditButton from "./EditButton";
 import { IOSSwitch } from "./iosSwitchconfig";
+import axios from "axios";
 /*switch material ui inbuild handler */
 
 const validate = (values) => {
@@ -22,19 +23,22 @@ const validate = (values) => {
   return errors;
 };
 
-const Linkcard = () => {
+const Linkcard = (props) => {
   const [labelActive, setLabelActive] = useState(false);
   const [linkActive, setLinkActive] = useState(false);
   const labelRef = useRef(null);
   const linkRef = useRef(null);
+  const { _id, label, link } = props;
   useEffect(() => {
     if (linkActive) linkRef.current.focus();
     if (labelActive) labelRef.current.focus();
   }, [linkActive, labelActive]);
+
   const formik = useFormik({
     initialValues: {
-      label: "",
-      link: "",
+      label: label,
+      link: link,
+      isActive: false,
     },
     validate,
     onSubmit: (values) => {
@@ -42,12 +46,31 @@ const Linkcard = () => {
     },
   });
 
+  const deleteLink = async (linkId) => {
+    console.log(linkId);
+    await axios.delete(`http://localhost:5000/links/delete`, {
+      data: {
+        linkId,
+        userId: "62b5e8b499d84dc7271cf478",
+      },
+    });
+    console.log("deleted");
+  };
+
+  const updateLink = async () => {
+    await axios.patch(`http://localhost:5000/links/update/${_id}`, {
+      label: formik.values.label,
+      link: formik.values.link,
+      userId: "62b5e8b499d84dc7271cf478",
+    });
+  };
   return (
-    <div className="link-wrapper">
+    <div className="link-wrapper" key={_id}>
       <form
         action="submit"
         className="link-form"
         onSubmit={(e) => {
+          updateLink();
           e.preventDefault();
         }}
       >
@@ -63,7 +86,10 @@ const Linkcard = () => {
               ref={labelRef}
               value={formik.values.label}
               onChange={formik.handleChange}
-              onBlur={() => setLabelActive(false)}
+              onBlur={() => {
+                updateLink();
+                setLabelActive(false);
+              }}
             />
             <EditButton
               type="label"
@@ -87,6 +113,7 @@ const Linkcard = () => {
               onChange={formik.handleChange}
               value={formik.values.link}
               onBlur={() => {
+                updateLink();
                 setLinkActive(false);
               }}
             />
@@ -101,13 +128,15 @@ const Linkcard = () => {
           </div>
         </div>
         <div className="switch">
-          <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} />} />
+          <FormControlLabel
+            control={<IOSSwitch sx={{ m: 1 }} disabled={true} />}
+          />
         </div>
       </form>
       <div className="link-bottom">
         <div className="others-field"></div>
         <div className="delete-button">
-          <DeleteIcon onClick={() => formik.handleSubmit()} />
+          <DeleteIcon onClick={() => deleteLink(_id)} />
         </div>
       </div>
     </div>

@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Linkcard from "./Linkcard";
 import "./LinkPage.css";
 import Button from "@mui/material/Button";
-// import axios from "axios";
+import axios from "axios";
+
 const LinkPage = () => {
-  const [userLinks, setUserLinks] = useState(["a", "b", "c"]);
-  /*const addLink = async () => {
+  const [userLinks, setUserLinks] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `http://localhost:5000/links/getlinks/62b5e8b499d84dc7271cf478`
+      );
+      setUserLinks(response.data.links);
+    };
+    fetchData();
+  }, []);
+  const addLink = async () => {
     const response = await axios.post(
-      `/links/createlink`,
-      {},
+      `http://localhost:5000/links/createlink`,
       {
-        headers: { Authorization: `Bearer ${token}` },
+        creator: "62b5e8b499d84dc7271cf478",
       }
     );
-    setUsersLinks((prev) => {
-      return [...prev, response.data];
-    });
-  };*/
-  const addLink = () => {
+    console.log(response.data);
     setUserLinks((prev) => {
-      return [...prev, "s"];
+      return [...prev, response.data.link];
     });
   };
   return (
@@ -34,8 +39,8 @@ const LinkPage = () => {
         </Button>
       </div>
       <div className="link-body">
-        {userLinks.map((userLink) => {
-          return <Linkcard userLink={userLink} />;
+        {userLinks.map((userLink, index) => {
+          return <Linkcard key={index} {...userLink} />;
         })}
       </div>
     </div>

@@ -17,15 +17,15 @@ const Routes = () => {
     <>
       <Router>
         <Switch>
-          <Route path="/" element={<Auth />} />
-          <Route path="/user" element={<UserPage />} />
+          <Route path="/" exact element={<Auth />} />
+          <Route path="/user" exact element={<UserPage />} />
           <Route path=":path" element={<AdminRoutes />} />
           <Route />
-          <Route path="/" element={<UserPage />} />
-          <Route path="/admin" element={<AdminPage />}>
+          <Route path="/" exact element={<UserPage />} />
+          <Route path="/admin" exact element={<AdminPage />}>
             <Route path=":path" element={<AdminRoutes />} />
           </Route>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" exact element={<Login />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Switch>
       </Router>
