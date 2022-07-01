@@ -8,7 +8,7 @@ import {
 import AdminPage from "./components/Admin/AdminPage";
 import AdminRoutes from "./components/Admin/AdminRoutes";
 import UserPage from "./components/UserPage/UserPage";
-import Auth from "./components/Login/index";
+import Auth from "./components/login/index";
 
 const Routes = () => {
   return (
