@@ -1,6 +1,7 @@
 import React from "react";
 import LinkCard from "./LinkCard";
 import SocialLink from "./SocialLink";
+
 import "./UserPage.css";
 const UserPage = () => {
   return (
@@ -28,9 +29,6 @@ const UserPage = () => {
               <LinkCard label="Shop" />
             </div>
             <div className="user-social-links">
-              <SocialLink />
-              <SocialLink />
-              <SocialLink />
               <SocialLink />
             </div>
           </div>

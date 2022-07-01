@@ -8,7 +8,7 @@
     width: 100vw;
     min-height: 100vh;
   }
-
+  
   .container-u {
     width: 100%;
     margin-top: 3%;
@@ -43,9 +43,13 @@
     height: 52px;
   }
 
-
-
-
+  #bookmark-img {
+    width: 3%;
+    position: fixed;
+    top: 2%;
+    right: 3%;
+    color: white;
+  }
 
   @media (min-width: 1200px) {
    
