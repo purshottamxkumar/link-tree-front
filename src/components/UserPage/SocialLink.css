@@ -1,6 +1,18 @@
+.icons {
+    width: 100%;
+}
 
-.Instagram{
-    width: 52px!important;
-    height: 52px!important;
-    color: red;
+a {
+    margin: 0 2%;
+    padding: 0;
+}
+
+.social-media-icon{
+    width: 52px !important;
+    height: 52px !important;
+    color: white;
+}
+
+.social-media-icon:hover {
+    color: gray;
 }

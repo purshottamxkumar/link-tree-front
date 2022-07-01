@@ -1,0 +1,13 @@
+a {
+    position: relative;
+}
+.icon {
+    position: absolute;
+    right: 3%;
+}
+
+@media only screen and (max-width: 600px) {
+    .icon {
+        right: 5%;
+    }
+}
