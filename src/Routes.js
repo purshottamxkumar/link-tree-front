@@ -9,6 +9,8 @@ import AdminPage from "./components/Admin/AdminPage";
 import AdminRoutes from "./components/Admin/AdminRoutes";
 import UserPage from "./components/UserPage/UserPage";
 import Auth from "./components/login/index";
+import Verify from "./components/Verify/Verify";
+import EmailVerificationPage from "./components/Verify/EmailVerificationPage";
 const Routes = () => {
   return (
     <>
@@ -16,6 +18,11 @@ const Routes = () => {
         <Switch>
           <Route path="/" exact element={<Auth />} />
           <Route path="/user" exact element={<UserPage />} />
+          <Route
+            path="/verify-email/:verificationString"
+            element={<EmailVerificationPage />}
+          />
+          <Route path="/please-verify" element={<Verify />} />
           <Route path="/admin/" exact element={<AdminPage />}>
             <Route path=":path" element={<AdminRoutes />} />
           </Route>

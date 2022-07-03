@@ -8,6 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useToken } from "../auth/useUser";
 const Signup = () => {
   const [, setToken] = useToken();
@@ -18,9 +19,10 @@ const Signup = () => {
   const paperStyle = { padding: 20, width: 300, margin: "0 auto" };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
-
+  const navigate = useNavigate();
   const onSignupClick = async (e) => {
     e.preventDefault();
+    if (passwordValue !== confirmPasswordValue) return;
     const response = await axios.post("http://localhost:5000/user/signup", {
       email: emailValue,
       password: passwordValue,
@@ -29,6 +31,7 @@ const Signup = () => {
 
     const newToken = response.data.token;
     setToken(newToken);
+    navigate("/please-verify");
   };
   return (
     <Grid>

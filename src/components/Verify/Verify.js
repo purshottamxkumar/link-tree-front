@@ -1,5 +1,5 @@
-import React from 'react';
-import "./VerifyMail.css";
+import React from "react";
+import "./Verify.css";
 
 const VerifyMail = () => {
   return (
@@ -11,15 +11,22 @@ const VerifyMail = () => {
           <p>We have sent an email to xyz@gmail.com</p>
           <br />
           <p>You need to verify your email to continue.</p>
-          <p>If you have not received the verification email, please check your "Spam" or "Bulk Email" folder. You can also click the resend button below to have another email sent to you.</p>
+          <p>
+            If you have not received the verification email, please check your
+            "Spam" or "Bulk Email" folder. You can also click the resend button
+            below to have another email sent to you.
+          </p>
           <br />
-          <button type="submit" id='btn'>Check again and continue</button>
-          <br /><br />
-          <a href="">Resend verification Email</a>
+          <button type="submit" id="btn">
+            Check again and continue
+          </button>
+          <br />
+          <br />
+          <a href="/">Resend verification Email</a>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default VerifyMail
+export default VerifyMail;
