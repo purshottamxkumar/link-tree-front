@@ -16,7 +16,12 @@ const Signup = () => {
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
   const [userNameValue, setUserNameValue] = useState("");
-  const paperStyle = { padding: 20, width: 300, margin: "0 auto" };
+  const paperStyle = {
+    padding: 20,
+    width: 300,
+    margin: "0 auto",
+    height: "60vh",
+  };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const navigate = useNavigate();

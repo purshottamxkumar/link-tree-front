@@ -18,7 +18,7 @@ const EmailVerificationPage = () => {
     const loadVerification = async () => {
       try {
         const response = await axios.put(
-          "http://localhost:5000/user/user/verify-email",
+          "http://localhost:5000/user/verify-email",
           {
             verificationString,
           }
@@ -30,13 +30,19 @@ const EmailVerificationPage = () => {
       } catch (error) {
         setIsSuccess(false);
         setIsLoading(false);
+        console.log(error);
       }
     };
 
     loadVerification();
   }, [setToken, verificationString]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="page-container">
+        <p>Loading...</p>
+      </div>
+    );
   if (!isSuccess) return <EmailVerificationFail />;
   return <EmailVerificationSuccess />;
 };
