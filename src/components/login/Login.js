@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Paper,
@@ -7,11 +7,18 @@ import {
   Typography,
   Link,
 } from "@material-ui/core";
-//import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { useNavigate } from "react-router-dom";
+import { useToken } from "../auth/useToken";
+import axios from "axios";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+
 const Login = (props) => {
+  const [, setToken] = useToken();
+  const [userNameOrEmail, setuserNameOrEmail] = useState();
+  const [PasswordValue, setPasswordValue] = useState();
   const { handleChange } = props;
+  const navigate = useNavigate();
   const paperStyle = {
     padding: 20,
     height: "60vh",
@@ -20,6 +27,19 @@ const Login = (props) => {
   };
   //   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
+
+  const onSiginClick = async (e) => {
+    e.preventDefault();
+    const response = await axios.post("http://localhost:5000/user/login", {
+      userNameOrEmail,
+      password: PasswordValue,
+    });
+
+    const newToken = response.data.token;
+    setToken(newToken);
+    navigate("/admin/dasdd");
+  };
+
   return (
     <Grid>
       <Paper style={paperStyle}>
@@ -27,15 +47,17 @@ const Login = (props) => {
           <h2>Sign In</h2>
         </Grid>
         <TextField
-          label="Username"
-          placeholder="Enter username"
+          label="Username or Email"
+          placeholder="Enter username or email"
           fullWidth
+          onChange={(e) => setuserNameOrEmail(e.target.value)}
           required
         />
         <TextField
           label="Password"
           placeholder="Enter password"
           type="password"
+          onChange={(e) => setPasswordValue(e.target.value)}
           fullWidth
           required
         />
@@ -48,6 +70,7 @@ const Login = (props) => {
           color="primary"
           variant="contained"
           style={btnstyle}
+          onClick={onSiginClick}
           fullWidth
         >
           Sign in

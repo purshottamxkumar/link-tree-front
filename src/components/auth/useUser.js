@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useToken } from "./useToken";
 
-export const useToken = () => {
-  const [token, setTokenInternal] = useState(() => {
-    return localStorage.getItem("token");
-  });
+export const useUser = () => {
+  const [token] = useToken();
 
-  const setToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setTokenInternal(newToken);
+  const getPayloadFromToken = (token) => {
+    const encodedPayload = token.split(".")[1];
+    return JSON.parse(atob(encodedPayload));
   };
 
-  return [token, setToken];
+  const [user, setUser] = useState(() => {
+    if (!token) return null;
+    return getPayloadFromToken(token);
+  });
+
+  useEffect(() => {
+    if (!token) {
+      setUser(null);
+    } else {
+      setUser(getPayloadFromToken(token));
+    }
+  }, [token]);
+
+  return user;
 };

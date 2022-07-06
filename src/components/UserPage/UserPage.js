@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LinkCard from "./LinkCard";
 import SocialLink from "./SocialLink";
-
+import { useParams, useNavigate } from "react-router-dom";
 import "./UserPage.css";
+import axios from "axios";
 const UserPage = () => {
+  const navigateTo = useNavigate();
+  const { username } = useParams();
+  const [links, setLinks] = useState([]);
+  useEffect(() => {
+    const getresponse = async () => {
+      const response = await axios.get(
+        `http://localhost:5000/links/getlinksbyusername/${username}`
+      );
+      console.log(response);
+      const newLinks = response.data.links;
+      if (newLinks.length === 0) navigateTo("/");
+      else setLinks(newLinks);
+    };
+    getresponse();
+  }, []);
   return (
     <>
       <div className="user-wrapper">
@@ -19,14 +35,13 @@ const UserPage = () => {
             />
             <div className="w3-text-white">
               <p className="w3-large">
-                <strong>@purshottam</strong>
+                <strong>@MR X</strong>
               </p>
             </div>
             <div className="links-container">
-              <LinkCard label="Shop" />
-              <LinkCard label="Master classes" />
-              <LinkCard label="Blog" />
-              <LinkCard label="Shop" />
+              {links.map((link) => {
+                return <LinkCard key={link._id} label={link.label} />;
+              })}
             </div>
             <div className="user-social-links">
               <SocialLink />

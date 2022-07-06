@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../auth/useUser";
+import { useToken } from "../auth/useToken";
 const Signup = () => {
   const [, setToken] = useToken();
   const [emailValue, setEmailValue] = useState("");

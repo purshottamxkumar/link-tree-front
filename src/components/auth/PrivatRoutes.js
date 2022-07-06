@@ -1,10 +1,13 @@
 import { Navigate, Route } from "react-router-dom";
-import { useToken } from "./useUser";
+import { useToken } from "./useToken";
+import React from "react";
 
-export const PrivateRoute = (props) => {
+const PrivatRoutes = (props) => {
   const [token] = useToken();
 
   if (!token) return <Navigate replace to="/login" />;
 
   return <Route {...props} />;
 };
+
+export default PrivatRoutes;

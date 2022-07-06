@@ -3,26 +3,31 @@ import Linkcard from "./Linkcard";
 import "./LinkPage.css";
 import Button from "@mui/material/Button";
 import axios from "axios";
-
+import { useToken } from "../../auth/useToken";
+import { useUser } from "../../auth/useUser";
 const LinkPage = () => {
   const [userLinks, setUserLinks] = useState([]);
+  const [token] = useToken();
+  const { userId } = useUser();
+  console.log(userId);
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:5000/links/getlinks/62b5e8b499d84dc7271cf478`
+        `http://localhost:5000/links/getlinks/${userId}`
       );
       setUserLinks(response.data.links);
     };
     fetchData();
-  }, []);
+  }, [userId]);
   const addLink = async () => {
     const response = await axios.post(
       `http://localhost:5000/links/createlink`,
+      {},
       {
-        creator: "62b5e8b499d84dc7271cf478",
+        headers: { authorization: `Bearer ${token}` },
       }
     );
-    console.log(response.data);
+
     setUserLinks((prev) => {
       return [...prev, response.data.link];
     });

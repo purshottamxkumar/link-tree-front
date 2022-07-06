@@ -17,7 +17,7 @@ const Routes = () => {
       <Router>
         <Switch>
           <Route path="/" exact element={<Auth />} />
-          <Route path="/user" exact element={<UserPage />} />
+          <Route path="/user/:username" exact element={<UserPage />} />
           <Route
             path="/verify-email/:verificationString"
             element={<EmailVerificationPage />}

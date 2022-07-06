@@ -7,7 +7,7 @@ import EditButton from "./EditButton";
 import { IOSSwitch } from "./iosSwitchconfig";
 import axios from "axios";
 /*switch material ui inbuild handler */
-
+import { useToken } from "../../auth/useToken";
 const validate = (values) => {
   const errors = {};
   if (!values.label) {
@@ -26,6 +26,7 @@ const validate = (values) => {
 const Linkcard = (props) => {
   const [labelActive, setLabelActive] = useState(false);
   const [linkActive, setLinkActive] = useState(false);
+  const [token] = useToken();
   const labelRef = useRef(null);
   const linkRef = useRef(null);
   const { _id, label, link } = props;
@@ -58,11 +59,16 @@ const Linkcard = (props) => {
   };
 
   const updateLink = async () => {
-    await axios.patch(`http://localhost:5000/links/update/${_id}`, {
-      label: formik.values.label,
-      link: formik.values.link,
-      userId: "62b5e8b499d84dc7271cf478",
-    });
+    await axios.patch(
+      `http://localhost:5000/links/update/${_id}`,
+      {
+        label: formik.values.label,
+        link: formik.values.link,
+      },
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
   };
   return (
     <div className="link-wrapper" key={_id}>
