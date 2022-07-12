@@ -7,19 +7,20 @@ import axios from "axios";
 const UserPage = () => {
   const navigateTo = useNavigate();
   const { username } = useParams();
-  const [links, setLinks] = useState([]);
+  const [response, setResponse] = useState({ name: "", links: [] });
   useEffect(() => {
     const getresponse = async () => {
       const response = await axios.get(
         `http://localhost:5000/links/getlinksbyusername/${username}`
       );
-      console.log(response);
-      const newLinks = response.data.links;
-      if (newLinks.length === 0) navigateTo("/");
-      else setLinks(newLinks);
+
+      const newResponse = response.data;
+
+      if (!newResponse) navigateTo("/");
+      else setResponse(newResponse);
     };
     getresponse();
-  }, []);
+  }, [navigateTo, username]);
   return (
     <>
       <div className="user-wrapper">
@@ -35,12 +36,12 @@ const UserPage = () => {
             />
             <div className="w3-text-white">
               <p className="w3-large">
-                <strong>@MR X</strong>
+                <strong>{response.name}</strong>
               </p>
             </div>
             <div className="links-container">
-              {links.map((link) => {
-                return <LinkCard key={link._id} label={link.label} />;
+              {response.links.map((link) => {
+                return <LinkCard key={link._id} link={link} />;
               })}
             </div>
             <div className="user-social-links">

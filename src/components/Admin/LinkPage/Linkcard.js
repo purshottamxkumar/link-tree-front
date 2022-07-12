@@ -5,9 +5,10 @@ import "./LinkCard.css";
 import { useState, useEffect, useRef } from "react";
 import EditButton from "./EditButton";
 import { IOSSwitch } from "./iosSwitchconfig";
+import { useToken } from "../../auth/useToken";
+import { useUser } from "../../auth/useUser";
 import axios from "axios";
 /*switch material ui inbuild handler */
-import { useToken } from "../../auth/useToken";
 const validate = (values) => {
   const errors = {};
   if (!values.label) {
@@ -26,9 +27,10 @@ const validate = (values) => {
 const Linkcard = (props) => {
   const [labelActive, setLabelActive] = useState(false);
   const [linkActive, setLinkActive] = useState(false);
-  const [token] = useToken();
   const labelRef = useRef(null);
   const linkRef = useRef(null);
+  const [token] = useToken();
+  const { userId } = useUser();
   const { _id, label, link } = props;
   useEffect(() => {
     if (linkActive) linkRef.current.focus();
@@ -48,14 +50,15 @@ const Linkcard = (props) => {
   });
 
   const deleteLink = async (linkId) => {
-    console.log(linkId);
     await axios.delete(`http://localhost:5000/links/delete`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       data: {
         linkId,
-        userId: "62b5e8b499d84dc7271cf478",
+        userId,
       },
     });
-    console.log("deleted");
   };
 
   const updateLink = async () => {

@@ -9,7 +9,6 @@ const LinkPage = () => {
   const [userLinks, setUserLinks] = useState([]);
   const [token] = useToken();
   const { userId } = useUser();
-  console.log(userId);
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
