@@ -4,9 +4,7 @@ export const IOSSwitch = styled((props) => (
   <Switch
     focusVisibleClassName=".Mui-focusVisible"
     disableRipple
-    onClick={() => {
-      console.log(props);
-    }}
+    onClick={() => {}}
     {...props}
   />
 ))(({ theme }) => ({

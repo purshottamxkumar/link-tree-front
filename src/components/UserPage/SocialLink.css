@@ -6,7 +6,9 @@ a {
     margin: 0 2%;
     padding: 0;
 }
-
+a:hover{
+    text-decoration: none !important;
+}
 .social-media-icon{
     width: 52px !important;
     height: 52px !important;

@@ -10,10 +10,9 @@ import React from "react";
 const EmailVerificationPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const { verificationString } = useParams();
   const [, setToken] = useToken();
-  console.log(verificationString);
   useEffect(() => {
     const loadVerification = async () => {
       try {

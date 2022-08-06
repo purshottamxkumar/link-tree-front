@@ -12,22 +12,24 @@ import { useToken } from "../auth/useToken";
 import axios from "axios";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { useEffect } from "react";
+const paperStyle = {
+  padding: 20,
+  height: "60vh",
+  width: "100%",
+  ottom: 0,
+};
+const btnstyle = { margin: "8px 0" };
 
 const Login = (props) => {
-  const [, setToken] = useToken();
+  const [token, setToken] = useToken();
   const [userNameOrEmail, setuserNameOrEmail] = useState();
   const [PasswordValue, setPasswordValue] = useState();
   const { handleChange } = props;
   const navigate = useNavigate();
-  const paperStyle = {
-    padding: 20,
-    height: "60vh",
-    width: 300,
-    marginTop: "0 auto",
-  };
-  //   const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const btnstyle = { margin: "8px 0" };
-
+  useEffect(() => {
+    if (token && token.length > 1) navigate("/admin/sdsd");
+  });
   const onSiginClick = async (e) => {
     e.preventDefault();
     const response = await axios.post("http://localhost:5000/user/login", {

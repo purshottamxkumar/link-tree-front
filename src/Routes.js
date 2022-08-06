@@ -11,6 +11,7 @@ import UserPage from "./components/UserPage/UserPage";
 import Auth from "./components/login/index";
 import Verify from "./components/Verify/Verify";
 import EmailVerificationPage from "./components/Verify/EmailVerificationPage";
+import SavedLinkPage from "./components/Admin/LinkPage/SavedLinkPage";
 const Routes = () => {
   return (
     <>
@@ -24,6 +25,7 @@ const Routes = () => {
           />
           <Route path="/please-verify" element={<Verify />} />
           <Route path="/admin/" exact element={<AdminPage />}>
+            <Route path="saved-links" element={<SavedLinkPage />} />
             <Route path=":path" element={<AdminRoutes />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

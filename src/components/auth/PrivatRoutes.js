@@ -4,7 +4,7 @@ import React from "react";
 
 const PrivatRoutes = (props) => {
   const [token] = useToken();
-
+  console.log(token);
   if (!token) return <Navigate replace to="/login" />;
 
   return <Route {...props} />;

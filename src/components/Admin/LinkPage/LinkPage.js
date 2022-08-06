@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Linkcard from "./Linkcard";
+import Linkcard from "./LinkCard";
 import "./LinkPage.css";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -35,8 +35,7 @@ const LinkPage = () => {
     <div className="Link-content">
       <div className="link-top-nav">
         <Button
-          color="secondary"
-          style={{ backgroundColor: "#9b62fe24" }}
+          style={{ backgroundColor: "rgb(83 13 205)", color: "white" }}
           onClick={addLink}
         >
           Add New Link
@@ -44,7 +43,9 @@ const LinkPage = () => {
       </div>
       <div className="link-body">
         {userLinks.map((userLink, index) => {
-          return <Linkcard key={index} {...userLink} />;
+          return (
+            <Linkcard key={index} {...userLink} setUserLinks={setUserLinks} />
+          );
         })}
       </div>
     </div>

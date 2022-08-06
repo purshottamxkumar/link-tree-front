@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Login from "./Login";
 import Signup from "./SignUp";
@@ -25,11 +24,7 @@ const SignInOutContainer = () => {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && (
-          <Box>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
+        {value === index && <Box>{children}</Box>}
       </div>
     );
   }
@@ -44,7 +39,6 @@ const SignInOutContainer = () => {
         aria-label="disabled tabs example"
       >
         <Tab label="Sign In" />
-
         <Tab label="Sign Up" />
       </Tabs>
       <TabPanel value={value} index={0}>

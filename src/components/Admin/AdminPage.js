@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const AdminPage = () => {
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
       <Outlet />
     </>
   );

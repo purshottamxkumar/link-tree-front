@@ -28,3 +28,8 @@ code {
     align-items: center;
     justify-content: center;
 }
+
+#root{
+  min-height: 100vh;
+  background-color: #f3f3f1;
+}

@@ -1,14 +1,22 @@
 import FormControlLabel from "@mui/material/FormControlLabel";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import { useFormik } from "formik";
 import "./LinkCard.css";
 import { useState, useEffect, useRef } from "react";
-import EditButton from "./EditButton";
-import { IOSSwitch } from "./iosSwitchconfig";
+import EditButton from "../Uicomponents/EditButton";
+import { IOSSwitch } from "../Uicomponents/iosSwitchconfig";
 import { useToken } from "../../auth/useToken";
 import { useUser } from "../../auth/useUser";
 import axios from "axios";
 /*switch material ui inbuild handler */
+const isValidUrl = (urlString) => {
+  try {
+    return Boolean(new URL(urlString));
+  } catch (e) {
+    return false;
+  }
+};
+
 const validate = (values) => {
   const errors = {};
   if (!values.label) {
@@ -24,14 +32,17 @@ const validate = (values) => {
   return errors;
 };
 
-const Linkcard = (props) => {
+const LinkCard = (props) => {
   const [labelActive, setLabelActive] = useState(false);
   const [linkActive, setLinkActive] = useState(false);
+  const [switchOn, setSwitchOn] = useState(false);
+  const [urlerror, seturlerror] = useState(!isValidUrl(props.link));
+
   const labelRef = useRef(null);
   const linkRef = useRef(null);
   const [token] = useToken();
   const { userId } = useUser();
-  const { _id, label, link } = props;
+  const { _id, label, link, setUserLinks } = props;
   useEffect(() => {
     if (linkActive) linkRef.current.focus();
     if (labelActive) labelRef.current.focus();
@@ -59,20 +70,41 @@ const Linkcard = (props) => {
         userId,
       },
     });
+    setUserLinks((p) =>
+      p.filter(() => {
+        return p._id !== linkId;
+      })
+    );
   };
 
   const updateLink = async () => {
+    if (isValidUrl(formik.values.link)) {
+      seturlerror(false);
+    } else {
+      seturlerror(true);
+      setSwitchOn(false);
+    }
     await axios.patch(
       `http://localhost:5000/links/update/${_id}`,
       {
         label: formik.values.label,
         link: formik.values.link,
+        active: linkActive,
       },
       {
         headers: { authorization: `Bearer ${token}` },
       }
     );
   };
+
+  const enabledisableLink = () => {
+    if (isValidUrl(formik.values.link)) {
+      setSwitchOn((p) => !p);
+      return;
+    }
+    setSwitchOn(false);
+  };
+
   return (
     <div className="link-wrapper" key={_id}>
       <form
@@ -102,9 +134,14 @@ const Linkcard = (props) => {
             />
             <EditButton
               type="label"
-              style={{ fontSize: "15px", fontWeight: "600", cursor: "pointer" }}
+              style={{
+                fontSize: "15px",
+                fontWeight: "600",
+                cursor: "pointer",
+              }}
               Active={labelActive}
               value={formik.values.label}
+              valid={urlerror}
               setActive={setLabelActive}
               initial="Title"
             />
@@ -128,7 +165,12 @@ const Linkcard = (props) => {
             />
             <EditButton
               type="link"
-              style={{ fontSize: "13px", fontWeight: "600", cursor: "pointer" }}
+              style={{
+                fontSize: "13px",
+                fontWeight: "600",
+                cursor: "pointer",
+                color: `${urlerror && "red"}`,
+              }}
               Active={linkActive}
               value={formik.values.link}
               initial="Url"
@@ -136,20 +178,20 @@ const Linkcard = (props) => {
             />
           </div>
         </div>
-        <div className="switch">
+        <div className="switch" onClick={() => enabledisableLink()}>
           <FormControlLabel
-            control={<IOSSwitch sx={{ m: 1 }} disabled={true} />}
+            control={<IOSSwitch sx={{ m: 1 }} disabled={switchOn} />}
           />
         </div>
       </form>
       <div className="link-bottom">
         <div className="others-field"></div>
         <div className="delete-button">
-          <DeleteIcon onClick={() => deleteLink(_id)} />
+          <DeleteForeverOutlinedIcon onClick={() => deleteLink(_id)} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Linkcard;
+export default LinkCard;
